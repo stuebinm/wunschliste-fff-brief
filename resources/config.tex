@@ -1,0 +1,82 @@
+\usepackage{fontspec}
+\usepackage[margin=2.5cm, tmargin=1.3cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage[pages=some, placement=top]{background}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{environ}
+
+% standard fff colours
+\definecolor{fff}{RGB}{27, 115, 64}
+\definecolor{bright}{RGB}{28, 168, 71}
+
+% sets the background (i.e. the green line at the top, as well as the logo)
+\backgroundsetup{
+scale=1,
+color=black,
+opacity=1,
+angle=0,
+contents={\includegraphics[width=\paperwidth]{resources/image.pdf}}
+}
+
+% no initial indents in paragraphs
+\setlength{\parindent}{0cm}
+
+% width of table lines
+\setlength\arrayrulewidth{2pt}
+
+
+
+% GRAPHICAL ELEMENTS
+
+% define section headers
+\renewcommand{\section}[1]{
+    \vspace{0.5\baselineskip}
+    {\jost\color{fff}\Large #1}
+}
+
+
+\newcommand{\makeheader}{
+% enable background
+\BgThispage
+% suppress page number
+% header and title
+{\color{white}
+{\headline \maintitle}\\
+\vspace{1\baselineskip} \\
+{\jost\LARGE \description}
+} \\
+
+\vspace {1.5\baselineskip} % width of lines in table
+}
+
+
+\NewEnviron{agtable}
+{%
+    \vspace{0.5\baselineskip}
+    \begin{tabularx}{\textwidth}{X!{\color{white}\vrule width 2pt}X}%
+    \BODY
+    \end{tabularx}
+}
+
+% Line of header cells
+\newcommand{\tableheader}[2]{
+\arrayrulecolor{white}\hline
+\jost\large\color{white}\cellcolor{fff} #1 & 
+\jost\large\color{white}\cellcolor{fff} #2 \\
+}
+% line of content cells
+\newcommand{\agupdates}[2]{
+\color{black}\cellcolor{bright} #1
+& \color{black}\cellcolor{bright} #2 \\
+}
+
+\newcommand{\calender}[2]{%
+\center\color{white}\cellcolor{fff}\jost\Large #1
+&
+\color{white}\cellcolor{fff}\jost#2
+}
+
+
+
